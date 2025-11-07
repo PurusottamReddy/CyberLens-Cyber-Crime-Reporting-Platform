@@ -16,7 +16,7 @@ const CrimeSchema = new mongoose.Schema({
 
     category:{
         type:String,
-        enum:["Financial Fraud","Phishing","Online Harassment","Deepfake","Hacking","Other"],
+        enum:["Financial Fraud","Phishing","Online Harassment","Deepfake","Hacking","Cyberstalking","CSAM","Intellectual Property Theft","Cyberterrorism","Other"],
         default:"Other",
         required:true
     },

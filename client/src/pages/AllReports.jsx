@@ -61,70 +61,68 @@ const AllReports = () => {
   };
 
   if (loading) {
-    return <div className="text-center mt-8">Loading reports...</div>;
+    return <div className="text-center mt-8 text-gray-700 dark:text-gray-300">Loading reports...</div>;
   }
 
   if (error) {
-    return <div className="text-center mt-8 text-red-500">{error}</div>;
+    return <div className="text-center mt-8 text-red-500 dark:text-red-400">{error}</div>;
   }
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-4 min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors">
       {user.role === 'user' ? (
-        <h1 className="text-3xl font-bold text-center mb-6 "> Your Crime Reports</h1>
+        <h1 className="text-3xl font-bold text-center mb-6 text-gray-800 dark:text-white"> Your Crime Reports</h1>
       ) : (
-        <h1 className="text-3xl font-bold text-center mb-6">All Crime Reports</h1>
+        <h1 className="text-3xl font-bold text-center mb-6 text-gray-800 dark:text-white">All Crime Reports</h1>
       )}
       {/* {user.role==='authority' || user.role==='admin' && <h1 className="text-3xl font-bold text-center mb-6">All Crime Reports</h1>} (another way of writing) */}
       {reports.length === 0 ? (
-        <p className="text-center text-gray-600">No crime reports found.</p>
+        <p className="text-center text-gray-600 dark:text-gray-400">No crime reports found.</p>
       ) : (
         <div className="overflow-x-auto">
-          <table className="min-w-full bg-white border border-gray-200">
+          <table className="min-w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-md">
             <thead>
-              <tr>
-                <th className="py-2 px-4 border-b">ID</th>
-                <th className="py-2 px-4 border-b">Title</th>
-                <th className="py-2 px-4 border-b">Category</th>
-                <th className="py-2 px-4 border-b">Location</th>
-                <th className="py-2 px-4 border-b">Date</th>
-                <th className="py-2 px-4 border-b">Status</th>
-                <th className="py-2 px-4 border-b">Actions</th>
+              <tr className="bg-gray-100 dark:bg-gray-700">
+                <th className="py-2 px-4 border-b border-gray-200 dark:border-gray-600 text-left text-gray-700 dark:text-gray-300">ID</th>
+                <th className="py-2 px-4 border-b border-gray-200 dark:border-gray-600 text-left text-gray-700 dark:text-gray-300">Title</th>
+                <th className="py-2 px-4 border-b border-gray-200 dark:border-gray-600 text-left text-gray-700 dark:text-gray-300">Category</th>
+                <th className="py-2 px-4 border-b border-gray-200 dark:border-gray-600 text-left text-gray-700 dark:text-gray-300">Location</th>
+                <th className="py-2 px-4 border-b border-gray-200 dark:border-gray-600 text-left text-gray-700 dark:text-gray-300">Date</th>
+                <th className="py-2 px-4 border-b border-gray-200 dark:border-gray-600 text-left text-gray-700 dark:text-gray-300">Status</th>
+                <th className="py-2 px-4 border-b border-gray-200 dark:border-gray-600 text-left text-gray-700 dark:text-gray-300">Actions</th>
               </tr>
             </thead>
             <tbody>
               {reports.map((report) => (
-                <tr key={report._id} className="hover:bg-gray-50">
-                  <td className="py-2 px-4 border-b">{report._id}</td>
-                  <td className="py-2 px-4 border-b">{report.title}</td>
-                  <td className="py-2 px-4 border-b">{report.category}</td>
-                  <td className="py-2 px-4 border-b">{report.location}</td>
-                  <td className="py-2 px-4 border-b">{new Date(report.date).toLocaleDateString()}</td>
-                  <td className="py-2 px-4 border-b">
+                <tr key={report._id} className="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                  <td className="py-2 px-4 border-b border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300">{report._id}</td>
+                  <td className="py-2 px-4 border-b border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300">{report.title}</td>
+                  <td className="py-2 px-4 border-b border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300">{report.category}</td>
+                  <td className="py-2 px-4 border-b border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300">{report.location}</td>
+                  <td className="py-2 px-4 border-b border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300">{new Date(report.date).toLocaleDateString()}</td>
+                  <td className="py-2 px-4 border-b border-gray-200 dark:border-gray-600">
                     {(user.role === 'authority' || user.role === 'admin') ? (
                       <select
                         value={report.status}
                         onChange={(e) => handleStatusChange(report._id, e.target.value)}
-                        className="p-1 border rounded"
+                        className="p-1 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300"
                       >
                         <option value="Open">Open</option>
                         <option value="Closed">Closed</option>
                       </select>
                     ) : (
-                      report.status
+                      <span className="text-gray-700 dark:text-gray-300">{report.status}</span>
                     )}
                   </td>
-                  <td className="py-2 px-4 border-b">
-                    <Link to={`/report/${report._id}`} className="text-blue-500 hover:underline mr-2">
+                  <td className="py-2 px-4 border-b border-gray-200 dark:border-gray-600">
+                    <Link to={`/report/${report._id}`} className="text-blue-500 dark:text-blue-400 hover:underline mr-2">
                       View
                     </Link>
-                    <td>
-                      <button
-                        onClick={() => handleDeleteReport(report._id)}
-                        className="text-red-500 hover:underline">
-                        Delete
-                      </button>
-                    </td>
+                    <button
+                      onClick={() => handleDeleteReport(report._id)}
+                      className="text-red-500 dark:text-red-400 hover:underline">
+                      Delete
+                    </button>
                   </td>
                 </tr>
               ))}

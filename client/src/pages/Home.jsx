@@ -8,30 +8,14 @@ const Home = () => {
   const { user,navigate } = useContext(UserContext);
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl w-full space-y-8 text-center">
-        <h1 className="text-5xl font-extrabold text-gray-900">
-          Welcome to the Cyber Crime Reporting Platform
-        </h1>
-        <p className="mt-4 text-xl text-gray-600">
-          Your secure platform to report cybercrimes, track their status, and contribute to a safer digital world.
-        </p>
-        <div className="mt-8 flex justify-center space-x-4">
-          <button
-            onClick={() => navigate('/report-cc')}
-            className="px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
-          >
-            Report a Crime
-          </button>
-          <button
-            onClick={() => navigate('/all-reports')}
-            className="px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200"
-          >
-            View All Reports
-          </button>
-        </div>
-      </div>
+   <div className="flex flex-col items-center justify-center min-h-screen bg-indigo-100 dark:bg-gray-900 px-5 sm:px-12 transition-colors">
+    <h1 className="text-4xl font-bold text-indigo-900 dark:text-indigo-300 text-center"> Welcome to the CyberLens - Cyber Crime Reporting Platform</h1>
+    <p className="text-lg text-indigo-700 dark:text-indigo-200 mt-2 text-center">Your secure platform to report cybercrimes, track their status, and contribute to a safer digital world.</p>
+    <div className="mt-8 flex justify-center space-x-4">
+      <button className="bg-indigo-800 dark:bg-indigo-600 font-bold p-2 text-white rounded-md hover:bg-indigo-900 dark:hover:bg-indigo-700 transition-colors" onClick={()=>navigate('/report-cc')}>Report a Crime</button>
+      <button className="bg-indigo-500 dark:bg-indigo-700 font-bold p-2 text-white rounded-md hover:bg-indigo-300 dark:hover:bg-indigo-600 transition-colors" onClick={()=>navigate('/all-reports')}>View all reports</button>
     </div>
+   </div>
   );
 };
 

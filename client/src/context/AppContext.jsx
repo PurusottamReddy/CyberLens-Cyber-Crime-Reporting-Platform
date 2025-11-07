@@ -11,7 +11,7 @@ export const UserContext = createContext();
 export const UserProvider = ({ children }) => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true); // to avoid flicker
+  const [loading, setLoading] = useState(true);
 
   // Check login status once when app loads
   useEffect(() => {

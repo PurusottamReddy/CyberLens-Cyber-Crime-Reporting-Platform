@@ -28,16 +28,16 @@ const Report = () => {
   }, [id, axios, toast])
 
   return (
-    <div className="p-5">
-      <h1 className="text-3xl font-bold text-center mb-5">Report Details for ID: {id}</h1>
-      <div className="bg-white p-5 border border-gray-200 rounded-md">
-        <p className="text-lg font-bold">Reported By: <span className="text-gray-600"> {report.anonymous ? "Anonymous" : report.user?.name} </span></p>
-        <p className="text-lg font-bold">Title: <span className="text-gray-600"> {report.title} </span></p>
-        <p className="text-lg font-bold">Category: <span className="text-gray-600"> {report.category} </span></p>
-        <p className="text-lg font-bold">Description: <span className="text-gray-600"> {report.description} </span></p>
-        <p className="text-lg font-bold">Location: <span className="text-gray-600"> {report.location} </span></p>
-        <p className="text-lg font-bold">Status: <span className="text-gray-600"> {report.status} </span></p>
-        <p className="text-lg font-bold">Evidence:</p>
+    <div className="p-5 min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors">
+      <h1 className="text-3xl font-bold text-center mb-5 text-gray-800 dark:text-white">Report Details for ID: {id}</h1>
+      <div className="bg-white dark:bg-gray-800 p-5 border border-gray-200 dark:border-gray-700 rounded-md shadow-md max-w-4xl mx-auto">
+        <p className="text-lg font-bold text-gray-800 dark:text-white">Reported By: <span className="text-gray-600 dark:text-gray-300 font-normal"> {report.anonymous ? "Anonymous" : report.user?.name} </span></p>
+        <p className="text-lg font-bold text-gray-800 dark:text-white mt-2">Title: <span className="text-gray-600 dark:text-gray-300 font-normal"> {report.title} </span></p>
+        <p className="text-lg font-bold text-gray-800 dark:text-white mt-2">Category: <span className="text-gray-600 dark:text-gray-300 font-normal"> {report.category} </span></p>
+        <p className="text-lg font-bold text-gray-800 dark:text-white mt-2">Description: <span className="text-gray-600 dark:text-gray-300 font-normal"> {report.description} </span></p>
+        <p className="text-lg font-bold text-gray-800 dark:text-white mt-2">Location: <span className="text-gray-600 dark:text-gray-300 font-normal"> {report.location} </span></p>
+        <p className="text-lg font-bold text-gray-800 dark:text-white mt-2">Status: <span className="text-gray-600 dark:text-gray-300 font-normal"> {report.status} </span></p>
+        <p className="text-lg font-bold text-gray-800 dark:text-white mt-4">Evidence:</p>
         <div className="flex flex-wrap gap-4 mt-2">
           {(Array.isArray(report.evidence)
             ? report.evidence
@@ -63,7 +63,7 @@ const Report = () => {
                   key={i}
                   src={file}
                   alt="Evidence"
-                  className="w-64 h-64 object-cover rounded-lg border"
+                  className="w-64 h-64 object-cover rounded-lg border border-gray-300 dark:border-gray-600"
                 />
               );
             } else if (type === "video") {
@@ -72,7 +72,7 @@ const Report = () => {
                   key={i}
                   src={file}
                   controls
-                  className="w-64 h-64 rounded-lg border"
+                  className="w-64 h-64 rounded-lg border border-gray-300 dark:border-gray-600"
                 />
               );
             } else if (type === "pdf") {
@@ -82,7 +82,7 @@ const Report = () => {
                   href={file}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-500 underline"
+                  className="text-blue-500 dark:text-blue-400 underline hover:text-blue-700 dark:hover:text-blue-300"
                 >
                   View PDF Evidence
                 </a>
@@ -94,7 +94,7 @@ const Report = () => {
                   href={file}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-500 underline"
+                  className="text-blue-500 dark:text-blue-400 underline hover:text-blue-700 dark:hover:text-blue-300"
                 >
                   Download File
                 </a>
