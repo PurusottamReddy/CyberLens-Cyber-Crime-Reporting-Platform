@@ -184,7 +184,7 @@ const AllReports = () => {
                         <select
                           value={report.status}
                           onChange={(e) => handleStatusChange(report._id, e.target.value)}
-                          className={`p-2 rounded-md text-sm font-medium ${report.status === 'pending' 
+                          className={`p-2 rounded-md text-sm font-medium ${report.status === 'Pending' 
                             ? 'bg-yellow-400/20 text-yellow-400 border border-yellow-400/30' 
                             : report.status === 'Investigating' 
                             ? 'bg-blue-400/20 text-blue-400 border border-blue-400/30' 
