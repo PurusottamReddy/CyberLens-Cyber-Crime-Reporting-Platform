@@ -2,7 +2,7 @@
 
 ## Live Demo
 *   **Live Application:** https://cyberlens-cyber-crime-reporting-platform.vercel.app
-*   **GitHub Repository:** https://github.com/PurusottamReddy/CyberLens
+*   **GitHub Repository:** https://github.com/PurusottamReddy/CyberLens-Cyber-Crime-Reporting-Platform
 
 ## Project Overview
 This is a full-stack MERN (MongoDB, Express.js, React.js, Node.js) application designed for reporting and managing cybercrimes. It provides a platform for users to report incidents, and for authorities/admins to track, investigate, and resolve these reports.
@@ -120,3 +120,4 @@ This project is licensed under the MIT License.
 ---
 
 Designed and Developed by T. Purusottam Reddy
+
