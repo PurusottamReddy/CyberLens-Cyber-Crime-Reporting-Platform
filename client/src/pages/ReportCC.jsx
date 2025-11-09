@@ -272,7 +272,7 @@ const ReportCC = () => {
 
           <div className="mb-6">
             <label htmlFor="evidence" className="block text-cyan-400 font-semibold mb-2">
-              Evidence (screenshots, documents, etc.)
+              Evidence (screenshots, documents, videos)
               {evidence.length > 0 && (
                 <span className="ml-2 text-purple-400 text-sm">({evidence.length} files selected)</span>
               )}
