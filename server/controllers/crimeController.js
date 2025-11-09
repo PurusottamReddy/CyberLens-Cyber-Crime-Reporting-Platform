@@ -66,13 +66,19 @@ export const getAllCrimeReports = async (req, res) =>{
 // Get User Crime Reports 
 export const getUserCrimeReports = async (req, res) =>{
     try{    
-        const reports = await Crime.find({user:req.params.userId}).populate("user")
+        const { status } = req.query;
+        let filter = { user: req.params.userId };
+        if (status) {
+            filter.status = status;
+        }
+        const reports = await Crime.find(filter).populate("user")
         return res.json({success:true,reports})
     }
     catch(error){
         return res.json({success:false,message:error.message})
     }
 }
+
 
 // Get Crime Report by ID
 export const getCrimeReport = async (req,res)=>{
