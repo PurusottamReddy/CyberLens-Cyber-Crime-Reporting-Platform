@@ -47,8 +47,8 @@ const CrimeSchema = new mongoose.Schema({
     },
     status:{
         type:String,
-        enum:["Open","Closed"],
-        default:"Open",
+        enum:["Pending","Investigating","Resolved"],
+        default:"Pending",
         required:true
     },
 

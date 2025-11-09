@@ -50,7 +50,12 @@ export const createCrimeReport = async (req, res) => {
 // Get All Crime Reports 
 export const getAllCrimeReports = async (req, res) =>{
     try{
-        const reports = await Crime.find().populate("user")
+        const { status } = req.query;
+        let filter = {};
+        if (status) {
+            filter.status = status;
+        }
+        const reports = await Crime.find(filter).populate("user")
         return res.json({success:true,reports})
     }
     catch(error){

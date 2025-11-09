@@ -38,7 +38,7 @@ export const UserProvider = ({ children }) => {
     else localStorage.removeItem("user");
   }, [user]);
 
-  if (loading) return <div className="text-center mt-10">Loading...</div>;
+
 
   return (
     <UserContext.Provider value={{ user, setUser, axios, toast, navigate }}>

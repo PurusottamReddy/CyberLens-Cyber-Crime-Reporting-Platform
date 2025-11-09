@@ -7,16 +7,23 @@ const AllReports = () => {
   const [reports, setReports] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [filter, setFilter] = useState('all'); // New state for filter
 
   useEffect(() => {
     const fetchReports = async () => {
       try {
         let response;
+        let url = '';
         if (user.role === 'user') {
-          response = await axios.get(`/api/crime/get-user-crime-reports/${user._id}`);
+          url = `/api/crime/get-user-crime-reports/${user._id}`;
         } else {
-          response = await axios.get('/api/crime/get-all-crime-reports');
+          url = '/api/crime/get-all-crime-reports';
         }
+
+        if (filter !== 'all') {
+          url += `?status=${filter}`;
+        }
+        response = await axios.get(url);
         setReports(response.data.reports || []);
       } catch (err) {
         setError(err.response?.data?.message || 'Failed to fetch reports');
@@ -32,7 +39,11 @@ const AllReports = () => {
       setError('You are not authorized to view reports.');
       setLoading(false);
     }
-  }, [user, axios, toast]);
+  }, [user, axios, toast, filter]); // Add filter to dependency array
+
+  const handleFilterChange = (newFilter) => {
+    setFilter(newFilter);
+  };
 
   const handleStatusChange = async (crimeId, newStatus) => {
     try {
@@ -99,6 +110,49 @@ const AllReports = () => {
           </span>
         </h1>
 
+        <div className="flex justify-center gap-4 mb-8">
+          <button
+            onClick={() => handleFilterChange('all')}
+            className={`px-6 py-2 rounded-full text-lg font-medium transition-all duration-300 ${
+              filter === 'all'
+                ? 'bg-cyan-500 text-white shadow-lg'
+                : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+            }`}
+          >
+            All
+          </button>
+          <button
+            onClick={() => handleFilterChange('Pending')}
+            className={`px-6 py-2 rounded-full text-lg font-medium transition-all duration-300 ${
+              filter === 'Pending'
+                ? 'bg-yellow-500 text-white shadow-lg'
+                : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+            }`}
+          >
+            Pending
+          </button>
+          <button
+            onClick={() => handleFilterChange('Investigating')}
+            className={`px-6 py-2 rounded-full text-lg font-medium transition-all duration-300 ${
+              filter === 'Investigating'
+                ? 'bg-blue-500 text-white shadow-lg'
+                : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+            }`}
+          >
+            Investigating
+          </button>
+          <button
+            onClick={() => handleFilterChange('Resolved')}
+            className={`px-6 py-2 rounded-full text-lg font-medium transition-all duration-300 ${
+              filter === 'Resolved'
+                ? 'bg-green-500 text-white shadow-lg'
+                : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+            }`}
+          >
+            Resolved
+          </button>
+        </div>
+
         {reports.length === 0 ? (
           <div className="text-center text-cyan-300 text-xl py-20">
             No crime reports found.
@@ -130,17 +184,18 @@ const AllReports = () => {
                         <select
                           value={report.status}
                           onChange={(e) => handleStatusChange(report._id, e.target.value)}
-                          className="p-2 border border-cyan-400/30 rounded bg-gray-900/50 text-white focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50 transition-all"
+                          className={`p-2 rounded-md text-sm font-medium ${report.status === 'pending' 
+                            ? 'bg-yellow-400/20 text-yellow-400 border border-yellow-400/30' 
+                            : report.status === 'Investigating' 
+                            ? 'bg-blue-400/20 text-blue-400 border border-blue-400/30' 
+                            : 'bg-green-400/20 text-green-400 border border-green-400/30'}`}
                         >
-                          <option value="Open">Open</option>
-                          <option value="Closed">Closed</option>
+                          <option value="Pending">Pending</option>
+                          <option value="Investigating">Investigating</option>
+                          <option value="Resolved">Resolved</option>
                         </select>
                       ) : (
-                        <span className={`px-3 py-1 rounded-full text-sm font-semibold ${
-                          report.status === 'Open' 
-                            ? 'bg-green-400/20 text-green-400 border border-green-400/30' 
-                            : 'bg-gray-400/20 text-gray-400 border border-gray-400/30'
-                        }`}>
+                        <span className={`px-3 py-1 rounded-full text-sm font-semibold ${report.status === 'pending' ? 'bg-yellow-400/20 text-yellow-400 border border-yellow-400/30' : report.status === 'investigating' ? 'bg-blue-400/20 text-blue-400 border border-blue-400/30' : 'bg-green-400/20 text-green-400 border border-green-400/30'}`}>
                           {report.status}
                         </span>
                       )}

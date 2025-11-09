@@ -1,9 +1,10 @@
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import { useContext, useState, useEffect } from "react"
 import { UserContext } from "../context/AppContext"
 
 const Report = () => {
   const { id } = useParams()
+  const navigate = useNavigate();
   const [report, setReport] = useState({})
   const { toast, axios } = useContext(UserContext)
 
@@ -50,6 +51,16 @@ const Report = () => {
           <span className="block text-cyan-300 text-lg mt-2 font-normal">ID: {id}</span>
         </h1>
 
+        <button
+          onClick={() => navigate(-1)}
+          className="mb-8 px-6 py-3 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-colors duration-300 flex items-center justify-center gap-2"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+          </svg>
+          Back to Reports
+        </button>
+
         <div className="bg-gray-800/50 backdrop-blur-sm border border-cyan-400/30 rounded-xl p-8 shadow-[0_0_30px_rgba(64,224,208,0.2)] animate-slide-up">
           <div className="space-y-4">
             <div className="border-b border-cyan-400/20 pb-4">
@@ -84,12 +95,12 @@ const Report = () => {
 
             <div className="border-b border-cyan-400/20 pb-4">
               <p className="text-cyan-400 font-semibold text-lg mb-1">Status:</p>
-              <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${
-                report.status === 'Open' 
-                  ? 'bg-green-400/20 text-green-400 border border-green-400/30' 
-                  : 'bg-gray-400/20 text-gray-400 border border-gray-400/30'
-              }`}>
-                {report.status}
+              <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${report.status === 'Pending' ? 'bg-yellow-400/20 text-yellow-400 border border-yellow-400/30' : report.status === 'Investigating' ? 'bg-blue-400/20 text-blue-400 border border-blue-400/30' : 'bg-green-400/20 text-green-400 border border-green-400/30'}`}>
+                <p
+                  className={`text-lg font-medium px-3 py-1 rounded-md inline-block`}
+                >
+                  {report.status}
+                </p>
               </span>
             </div>
 
