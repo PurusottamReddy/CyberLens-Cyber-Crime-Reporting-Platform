@@ -244,24 +244,32 @@ const Home = () => {
               </div>
 
               <div className="relative">
-                <div className="absolute inset-0 border-2 border-cyan-400/30 rounded-2xl animate-pulse" />
-                <div className="relative bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm border border-cyan-400/30 rounded-2xl p-8">
-                  <div className="grid grid-cols-3 gap-4 text-center">
-                    <div className="p-4 border border-cyan-400/20 rounded-lg hover:border-cyan-400 transition-colors">
-                      <div className="text-3xl font-bold text-cyan-400 mb-2">100K+</div>
-                      <div className="text-sm text-gray-400">Reports</div>
-                    </div>
-                    <div className="p-4 border border-purple-400/20 rounded-lg hover:border-purple-400 transition-colors">
-                      <div className="text-3xl font-bold text-purple-400 mb-2">45K+</div>
-                      <div className="text-sm text-gray-400">Resolved</div>
-                    </div>
-                    <div className="p-4 border border-blue-400/20 rounded-lg hover:border-blue-400 transition-colors">
-                      <div className="text-3xl font-bold text-blue-400 mb-2">24/7</div>
-                      <div className="text-sm text-gray-400">Support</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+  <div className="absolute inset-0 border-2 border-cyan-400/30 rounded-2xl animate-pulse" />
+  <div className="relative bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm border border-cyan-400/30 rounded-2xl p-6 sm:p-8">
+    
+    {/* Responsive Grid */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-center">
+      
+      {/* Reports */}
+      <div className="p-4 border border-cyan-400/20 rounded-lg hover:border-cyan-400 transition-colors">
+        <div className="text-3xl sm:text-4xl font-bold text-cyan-400 mb-2">100K+</div>
+        <div className="text-sm sm:text-base text-gray-400">Reports</div>
+      </div>
+
+      {/* Resolved */}
+      <div className="p-4 border border-purple-400/20 rounded-lg hover:border-purple-400 transition-colors">
+        <div className="text-3xl sm:text-4xl font-bold text-purple-400 mb-2">45K+</div>
+        <div className="text-sm sm:text-base text-gray-400">Resolved</div>
+      </div>
+
+      {/* Support */}
+      <div className="p-4 border border-blue-400/20 rounded-lg hover:border-blue-400 transition-colors">
+        <div className="text-3xl sm:text-4xl font-bold text-blue-400 mb-2">24/7</div>
+        <div className="text-sm sm:text-base text-gray-400">Support</div>
+      </div>
+    </div>
+  </div>
+</div>
             </div>
           </div>
         </section>
